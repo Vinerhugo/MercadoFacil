@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Listar Usuarios</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<form th:action="@{/usuario/buscar}" method="get">
+					<div class="row">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-4">
+							<div class="input-group">
+							<input type="text" name="nomeuser" class="form-control"
+								placeholder="Digite o nome do usuario..." />
+						<button type="submit" class="btn btn-secondary">
+							<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</div>								
+					</div>
+					</div>
+					<br />
+				</form>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nome</th>
+							<th>ADM</th>
+						    <th>Desativo</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="usuario, iter: ${usuarios}">
+							<td th:text="${usuario.id}"></td>
+							<td th:text="${usuario.nomeuser}"></td>
+							<td th:text="${usuario.adm}"></td>
+                             <td th:text="${usuario.desativar}"></td>
+							<td>
+								<div class="btn-group" role="group" aria-label="Ações">
+									<a th:href="@{/usuario/editar(id=${usuario.id})}"
+										class="btn btn-info btn-sm">Editar</a> 
+										<a th:href="@{/usuario/excluir(id=${usuario.id})}" 
+										class="btn btn-danger btn-sm">
+										<span class="glyphicon glyphicon-trash"></span></a>
+								
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example" th:if="${usuarios.getTotalPages()}  >=1 ">
+					<ul class="pagination">
+						<li class="page-item"
+							th:classappend="${!usuarios.hasPrevious()}? 'active'"><a
+							class="page-link"
+							th:href="@{/usuario(page=${usuarios.getNumber()-1},size=${usuarios.getSize()})}">Anterior</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${i == usuarios.getNumber()}? 'active'"
+							th:each="i : ${#numbers.sequence(0,usuarios.getTotalPages()-1)}">
+							<a class="page-link"
+							th:href="@{/usuario(page=${i},size=${usuarios.getSize()})}"
+							th:text="${i+1}">1</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${!usuarios.hasNext()}? 'active'"><a
+							class="page-link"
+							th:href="@{/usuario(page=${usuarios.getNumber()+1},size=${usuarios.getSize()})}">Proxima</a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-9">
+				<a th:href="@{/usuario/novo}" class="btn btn-success">Novo</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

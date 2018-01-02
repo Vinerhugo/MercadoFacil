@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Listar Promocoes</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<form th:action="@{/promocao/buscar}" method="get">
+					<div class="row">		
+						<div class="col-sm-2"></div>
+						<div class="col-sm-4">
+						<div class="input-group">	
+							<input type="text" name="texto" class="form-control"
+								placeholder="selecione nome da promocao..." />
+							<button type="submit" class="btn btn-secondary">
+						     <span class="glyphicon glyphicon-search"></span>
+							</button>
+					</div>
+					</div>
+					</div>
+					<br />
+				</form>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nome Promocao</th>						
+						    <th>IMG</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="promocao, iter: ${promocoes}">
+							<td th:text="${promocao.id}"></td>
+							<td th:text="${promocao.nomepromocao}"></td>					
+							<td><img th:src="@{/img/promocao/{nomepromocao}(nomepromocao=${promocao.caminhopromocao})}" class="img-thumbnail" style="width:50px; height:50px; border: thick groove black;"/></td>
+							
+							<td>
+
+								<div class="btn-group" role="group" aria-label="Ações">
+									<a th:href="@{/promocao/editar(id=${promocao.id})}"
+										class="btn btn-info btn-sm">Editar</a>
+										 <a th:href="@{/promocao/excluir(id=${promocao.id})}"
+										class="btn btn-danger btn-sm"> 
+										<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<nav aria-label="Page navigation example" th:if="${promocoes.getTotalPages()}  >=1 ">
+					<ul class="pagination">
+						<li class="page-item"
+							th:classappend="${!promocoes.hasPrevious()}? 'active'"><a
+							class="page-link"
+							th:href="@{/promocao(page=${promocoes.getNumber()-1},size=${promocoes.getSize()})}">Anterior</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${i == promocoes.getNumber()}? 'active'"
+							th:each="i : ${#numbers.sequence(0, promocoes.getTotalPages()-1)}">
+							<a class="page-link"
+							th:href="@{/promocao(page=${i},size=${promocoes.getSize()})}"
+							th:text="${i+1}">1</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${!promocoes.hasNext()}? 'active'"><a
+							class="page-link"
+							th:href="@{/promocao(page=${promocoes.getNumber()+1},size=${promocoes.getSize()})}">Proxima</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<a th:href="@{/promocao/novo}" class="btn btn-success">Novo</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

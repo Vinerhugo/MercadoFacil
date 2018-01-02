@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Promocoes</title>
+<style>
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+<div class="container">
+    <div id="main_area">
+        <!-- Slider -->
+        <div class="row">
+            <div class="col-sm-6" id="slider-thumbs">
+                <!-- Bottom switcher of slider -->
+                <ul class="hide-bullets">
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-1"><img th:src="@{/img/promocao/bt_agua.bmp}"/></a>
+                    </li>
+
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-2"><img th:src="@{/img/promocao/aditivo.bmp}"/></a>
+                    </li>
+
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-3"><img th:src="@{/img/promocao/batata.bmp}"/></a>
+                    </li>
+
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-4"><img th:src="@{/img/promocao/BISCOLATE.bmp}"/></a>
+                    </li>
+
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-5"><img th:src="@{/img/promocao/bt_alpino.bmp}"/></a>
+                    </li>
+                    
+                    <li class="col-sm-3">
+                        <a class="thumbnail" id="carousel-selector-6"><img th:src="@{/img/promocao/salgados.bmp}"/></a>
+                    </li>
+
+                </ul>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="col-xs-12" id="slider">
+                    <!-- Top part of the slider -->
+                    <div class="row">
+                        <div class="col-sm-12" id="carousel-bounding-box">
+                            <div class="carousel slide" id="myCarousell">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="active item" data-slide-number="0">
+                                        <img th:src="@{/img/promocao/bt_agua.bmp}"/></div>
+
+                                    <div class="item" data-slide-number="1">
+                                        <img th:src="@{/img/promocao/aditivo.bmp}"/></div>
+
+                                    <div class="item" data-slide-number="2">
+                                        <img th:src="@{/img/promocao/batata.bmp}"/></div>
+
+                                    <div class="item" data-slide-number="3">
+                                        <img th:src="@{/img/promocao/BISCOLATE.bmp}"/></div>
+
+                                    <div class="item" data-slide-number="4">
+                                        <img th:src="@{/img/promocao/bt_alpino.bmp}"/></div>
+
+                                    <div class="item" data-slide-number="5">
+                                        <img th:src="@{/img/promocao/salgados.bmp}"/></div>
+                                  
+                                </div>
+                                <!-- Carousel nav -->
+                                <a class="left carousel-control" href="#myCarousell" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousell" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Slider-->
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

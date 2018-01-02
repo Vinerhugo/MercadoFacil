@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout/main">
+
+<head>
+<title>Projeto Mercado Fácil</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container-fluid">
+		<h1>Criador do Sistema</h1>
+		<img th:src="@{/img/criador.jpg}" class="img-thumbnail"
+			style="width: 20%; border: thick groove blue;" />
+		<h1 style="color: blue;">Viner Hugo de Araujo</h1>
+		<h1>Contato</h1>
+		<h3>(34)99777-0424</h3>
+		<h1>E-mail</h1>
+		<h3>vinerhugo@hotmail.com</h3>
+	</div>
+</div>
+</body>
+</html>

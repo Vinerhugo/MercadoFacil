@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main"
+	>
+
+<head>
+<title>Projeto Mercado Fácil</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+ <form name="enviar message" id="contactForm"  method="get"  th:action="@{/email-send}">
+                   
+                    <div class="control-group form-group">
+                        <h3 style="color:blue;">Envie um E-mail, retornaremos assim que possivel!</h3>
+                        <br></br>
+                        <div class="controls col-lg-4">
+                             <label>Nome Completo*</label>
+                            <input type="text" class="form-control" id="nome" required="required" data-validation-required-message="Por favor, insira seu nome."/>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls col-lg-3">
+                            <label>Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" required="required" data-validation-required-message="Por favor, insira seu número de telefone." placeholder="(00) 0000-0000"/>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls col-lg-5">
+                            <label>Email*</label>
+                            <input type="email" class="form-control" id="email" required="required" data-validation-required-message="Por favor, insira seu email."/>
+                        </div>
+                    </div>
+                            
+                    <div class="control-group form-group">
+                        <div class="controls col-lg-8">
+                        
+                            <label>Mensagem</label>
+                            <textarea rows="10" cols="100" class="form-control" id="message" maxlength="999" style="resize:none" required="required" ></textarea>
+                        </div>
+
+                      <br></br>
+                     <div class="col-lg-5">
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                   
+                    </div>
+                </div>
+               
+                </form>
+             </div> 
+                </body>         
+
+                </html>
+          

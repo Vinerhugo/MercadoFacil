@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Listar Produtos</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<form th:action="@{/produto/buscar}" method="get">
+					<div class="row">		
+						<div class="col-sm-2"></div>
+						<div class="col-sm-6">
+						<div class="input-group">	
+							<input type="text" name="texto" class="form-control"
+								placeholder="selecione nome ou codigo de barras do produto..." />
+							<select name="opcao" class="btn btn-info">
+								<option value="nomeprod">Nome Produto</option>
+								<option value="codbarra">Codigo de barras</option>
+							</select>
+							<button type="submit" class="btn btn-secondary">
+						     <span class="glyphicon glyphicon-search"></span>
+							</button>
+					</div>
+					</div>
+					</div>
+					<br />
+				</form>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nome Produto</th>
+							<th>Cod Barra</th>
+							<th>Preço</th>
+							<th>Desativo</th>
+						    <th>IMG</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="produto, iter: ${produtos}">
+							<td th:text="${produto.id}"></td>
+							<td th:text="${produto.nomeprod}"></td>
+							<td th:text="${produto.codbarra}"></td>
+							<td th:text="${produto.preco}"></td>
+							<td th:text="${produto.desativar}"></td>						
+							<td><img th:src="@{/img/upload/{nomeprod}(nomeprod=${produto.caminhoimg})}" class="img-thumbnail" style="width:50px; height:50px; border: thick groove black;"/></td>
+							
+							<td>
+
+								<div class="btn-group" role="group" aria-label="Ações">
+									<a th:href="@{/produto/editar(id=${produto.id})}"
+										class="btn btn-info btn-sm">Editar</a>
+										 <a th:href="@{/produto/excluir(id=${produto.id})}"
+										class="btn btn-danger btn-sm"> 
+										<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<nav aria-label="Page navigation example" th:if="${produtos.getTotalPages()}  >=1 ">
+					<ul class="pagination">
+						<li class="page-item"
+							th:classappend="${!produtos.hasPrevious()}? 'active'"><a
+							class="page-link"
+							th:href="@{/produto(page=${produtos.getNumber()-1},size=${produtos.getSize()})}">Anterior</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${i == produtos.getNumber()}? 'active'"
+							th:each="i : ${#numbers.sequence(0, produtos.getTotalPages()-1)}">
+							<a class="page-link"
+							th:href="@{/produto(page=${i},size=${produtos.getSize()})}"
+							th:text="${i+1}">1</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${!produtos.hasNext()}? 'active'"><a
+							class="page-link"
+							th:href="@{/produto(page=${produtos.getNumber()+1},size=${produtos.getSize()})}">Proxima</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<a th:href="@{/produto/novo}" class="btn btn-success">Novo</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

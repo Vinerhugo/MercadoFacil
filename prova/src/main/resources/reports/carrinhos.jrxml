@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="carrinhos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c14b9ea0-0cb9-43e4-8369-4b7ff9c25f87">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nomecarrinho" class="java.lang.String"/>
+	<field name="usuario" class="br.una.prova.entity.Usuario"/>
+	<field name="dataformatada" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="185" y="24" width="184" height="31" uuid="ab2cf881-ad0b-418d-93bf-e8e08fd8c5ad"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<text><![CDATA[Carrinhos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="c2576508-6604-4c2f-9753-a3832ba80512">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="68c0dc06-b68a-467f-9c4c-9a4a404d3f76"/>
+				</reportElement>
+				<text><![CDATA[Nome Carrinho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="100" height="20" uuid="9370c3d3-4fa1-4726-a539-8e63b5b30afb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2ef1506-a1bb-4704-9f17-906cd06f2ee0"/>
+				</reportElement>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="0" width="100" height="20" uuid="d53a2a17-636d-4a79-9d95-41ec1894ad1f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5b424b3-aa94-43da-8884-9a762de61fb3"/>
+				</reportElement>
+				<text><![CDATA[Data Carrinho]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="3587b979-2e02-4323-b110-2c92844e88ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="68c0dc06-b68a-467f-9c4c-9a4a404d3f76"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomecarrinho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="0" width="100" height="20" uuid="4284a4c0-4bfb-4f84-ac75-2e3376ab5403">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2ef1506-a1bb-4704-9f17-906cd06f2ee0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{usuario}.getNomeuser()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="0" width="100" height="20" uuid="aa9d48a4-14b0-48c3-a82d-5ca8c4df362c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5b424b3-aa94-43da-8884-9a762de61fb3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dataformatada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

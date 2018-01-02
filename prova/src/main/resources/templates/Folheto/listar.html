@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Listar Folheto</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>					
+						    <th>Periodo</th>
+						    <th>IMG</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="folheto, iter: ${folhetos}">
+							<td th:text="${folheto.id}"></td>
+							<td th:text="${folheto.periodofolheto}"></td>					
+							<td><img th:src="@{/img/folheto/{nomefolheto}(nomefolheto=${folheto.caminhofolheto})}" class="img-thumbnail" style="width:50px; height:50px; border: thick groove black;"/></td>
+							
+							<td>
+
+								<div class="btn-group" role="group" aria-label="Ações">
+									<a th:href="@{/folheto/editar(id=${folheto.id})}"
+										class="btn btn-info btn-sm">Editar</a>
+										 <a th:href="@{/folheto/excluir(id=${folheto.id})}"
+										class="btn btn-danger btn-sm"> 
+										<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<nav aria-label="Page navigation example" th:if="${folhetos.getTotalPages()}  >=1 ">
+					<ul class="pagination">
+						<li class="page-item"
+							th:classappend="${!folhetos.hasPrevious()}? 'active'"><a
+							class="page-link"
+							th:href="@{/folhetos(page=${folhetos.getNumber()-1},size=${folhetos.getSize()})}">Anterior</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${i == folhetos.getNumber()}? 'active'"
+							th:each="i : ${#numbers.sequence(0, folhetos.getTotalPages()-1)}">
+							<a class="page-link"
+							th:href="@{/folhetos(page=${i},size=${folhetos.getSize()})}"
+							th:text="${i+1}">1</a>
+						</li>
+						<li class="page-item"
+							th:classappend="${!folhetos.hasNext()}? 'active'"><a
+							class="page-link"
+							th:href="@{/folhetos(page=${folhetos.getNumber()+1},size=${folhetos.getSize()})}">Proxima</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<a th:href="@{/folheto/novo}" class="btn btn-success">Novo</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

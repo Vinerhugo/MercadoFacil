@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Formulario Produto</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<form th:action="@{/produto/salvar}" th:object="${produto}"
+					enctype="multipart/form-data" method="post">
+					<input type="hidden" th:field="*{id}" />
+					<div class="form-group">
+						<label for="inputnomeprod">Nome Produto</label> <input type="text"
+							class="form-control" id="inputnomeprod" th:field="*{nomeprod}"
+							placeholder="Digite o nome do produto..." /> <span
+							th:if="${#fields.hasErrors('nomeprod')}" th:errors="*{nomeprod}"
+							class="badge badge-danger">erro</span>
+					</div>
+					<div class="form-group">
+						<label for="inputcodbarra">Cod Barra</label> <input type="text"
+							class="form-control" id="inputcodbarra" th:field="*{codbarra}" />
+						<span th:if="${#fields.hasErrors('codbarra')}"
+							th:errors="*{codbarra}" class="badge badge-danger">erro</span>
+					</div>
+					<div class="form-group">
+						<label for="inputpreco">Preço Produto</label> <input type="text"
+							class="form-control" id="inputpreco" th:field="*{preco}" /> <span
+							th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"
+							class="badge badge-danger">erro</span>
+
+					 </div>
+				
+					<div class="form-group">
+						<label for="inputimg">Inserir Imagem Produto</label>
+							<input type="file" name="file" class="form-control" id="inputimg" onchange="move()" />			
+                          	<div class="input-group margin-bottom-sm" id="image-holder" ></div>	                               
+                            <div id="myProgress">
+                            <div id="myBar">0%</div>
+                           </div>
+                     </div>
+  
+		
+					<div class="form-group">
+						<div class="form-check form-check-inline">
+							<label class="form-check-label">Desativar &nbsp;<input
+								class="form-check-input" type="checkbox" th:field="*{desativar}"
+								value="S" />
+							</label>
+						</div>
+					</div>
+
+
+					<a th:href="@{/produto}" class="btn btn-secondary">Cancelar</a>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

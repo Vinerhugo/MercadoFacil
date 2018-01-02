@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout/main"
+	>
+
+<head>
+<title>Projeto Mercado Fácil</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container-fluid">
+		<h1>Por Favor Apenas Desativar!</h1>
+		<img th:src="@{/img/erro.jpg}" class="img-thumbnail"
+			style="width: 30%; border: thick groove blue;" />	
+	</div>
+</div>
+</body>
+
+</html>

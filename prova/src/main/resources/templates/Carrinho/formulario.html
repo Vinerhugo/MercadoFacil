@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
+<head>
+<meta charset="UTF-8" />
+<title>Formulario Carrinho</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-12">
+				<form role="form" th:action="@{/carrinho/salvar}"
+					th:object="${carrinho}" method="post">
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="form-group">
+						<label for="inputnomecarrinho">Nome do Carrinho</label> <input
+							type="text" class="form-control" id="inputnomecarrinho"
+							th:field="*{nomecarrinho}"
+							placeholder="Digite o nome do carrinho..." />
+					</div>
+
+					<div class="form-group">
+						<label for="inputusuario">Selecione o Usuario</label> <select
+							class="form-control" id="inputusuario" th:field="*{usuario}">
+							<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
+								th:text="${usuario.nomeuser}"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="inputprodutos">Selecione os Produtos</label> <select
+							class="form-control" multiple="multiple" id="inputprodutos"
+							th:field="*{produtos}">
+							<option th:each="produto : ${produtos}" th:value="${produto.id}"
+								th:text="${produto.nomeprod}"></option>
+						</select>
+					</div>
+
+					<a th:href="@{/carrinho}" class="btn btn-secondary">Cancelar</a>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
