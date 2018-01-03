@@ -109,16 +109,5 @@ public class FolhetoController {
 		return "folheto/listar";
 
 	}
-
-	@GetMapping("/listfiles")
-	public String getListFiles(Model model) {
-		model.addAttribute("file",
-				files.stream()
-						.map(fileName -> MvcUriComponentsBuilder
-								.fromMethodName(FolhetoController.class, "getFile", fileName).build().toString())
-						.collect(Collectors.toList()));
-		return "folheto/listar";
-	}
-
 	
 }

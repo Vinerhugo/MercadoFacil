@@ -40,6 +40,7 @@ import javax.validation.Valid;
 
 import java.awt.print.PrinterException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
@@ -52,9 +53,12 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 @Controller
 @RequestMapping("/produto")
@@ -152,6 +156,35 @@ public class ProdutoController {
 						.collect(Collectors.toList()));
 		return "produto/listar";
 	}
-
+    
+	@GetMapping("/importar")
+	public void ler(Model model) throws FileNotFoundException {
+		  
+		String diretorio = "C:\\Temp\\dados.txt";
+				
+				File arquivo = new File(diretorio);
+				try {
+					if (arquivo.exists()) {
+						if (arquivo.canRead()) {
+							Scanner scanner = new Scanner(new FileReader(arquivo)).useDelimiter(" ");
+							while (scanner.hasNext()) {
+								 scanner.next();
+								scanner.next();
+								scanner.next();
+//								model.addAttributen("N: " +  " X: " +  " Y: " +);
+							}
+						} else {
+							model.addAttribute("O arquivo \"" + arquivo + "\" não foi encontrado.");
+						}
+					} else {
+						model.addAttribute("O arquivo \"" + arquivo + "\" não foi encontrado.");
+					}
+				} catch (NumberFormatException msg) {
+					model.addAttribute("Erro na conversão dos dados: " + msg.getMessage());
+				} catch (NoSuchElementException msg) {
+					model.addAttribute("Conteúdo inválido!\nVerifique o conteúdo e o layout e tente novamente." + msg.getMessage());
+				}
+			}
+	
 	
 }

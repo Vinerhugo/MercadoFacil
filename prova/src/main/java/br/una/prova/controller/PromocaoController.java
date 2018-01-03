@@ -54,7 +54,7 @@ public class PromocaoController {
 
 		return "promocao/listar";
 	}
-
+	
 	@GetMapping("/editar")
 	public String edit(Model model, @RequestParam Integer id) {
 		model.addAttribute("promocao", promocaoRepository.findOne(id));

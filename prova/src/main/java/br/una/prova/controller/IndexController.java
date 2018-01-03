@@ -1,8 +1,16 @@
 package br.una.prova.controller;
 
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+
+import br.una.prova.repository.PromocaoRepository;;
 
 
 @Controller
@@ -28,15 +36,6 @@ public class IndexController {
 	@RequestMapping("/login")
 	public String goLogin() {
 		return "login";
-	}
-	@RequestMapping("/vfolheto")
-	public String govfolheto() {
-		return "vfolheto";
-	}
-	
-	@RequestMapping("/vpromocao")
-	public String govpromocao() {
-		return "vpromocao";
 	}
 	
 }

@@ -91,8 +91,16 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<a th:href="@{/produto/novo}" class="btn btn-success">Novo</a>
-			</div>
+				<a th:href="@{/produto/novo}" class="btn btn-success btn-lg">Novo</a>	   
+            <label class="btn btn-dark">
+                Importar TXT&hellip;<input type="file" style="display: none;" />
+            <a th:href="@{/produto/importar}" class="btn btn-default">Salvar</a>
+            </label>
+            <label class="btn btn-danger">
+                Importar CSV&hellip;<input type="file" style="display: none;"/>
+                 <a th:href="@{/produto/importar}" class="btn btn-default">Salvar</a>
+            </label>
+			</div>	    
 		</div>
 	</div>
 </body>
